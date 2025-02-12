@@ -6,6 +6,10 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    ports:
+      - '9100:9100'
 
 volumes:
   prometheus-data:
