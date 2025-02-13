@@ -10,6 +10,12 @@ services:
     image: quay.io/prometheus/node-exporter:latest
     ports:
       - '9100:9100'
+  blackbox_exporter:
+    image: prom/blackbox-exporter
+    ports:
+      - '9115:9115'
+    volumes:
+      - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
 
 volumes:
   prometheus-data:
