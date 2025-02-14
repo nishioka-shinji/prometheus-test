@@ -22,6 +22,12 @@ services:
       - '3000:3000'
     volumes:
       - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+  web:
+    build: ./web
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./web:/app
 
 volumes:
   prometheus-data:

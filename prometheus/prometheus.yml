@@ -25,9 +25,8 @@ scrape_configs:
       module: [http_2xx]  # Look for a HTTP 200 response.
     static_configs:
       - targets:
-        - https://x.com/
-        - https://www.youtube.com/
-        - https://www.instagram.com/
+        - http://web:4567/success
+        - http://web:4567/failure
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
