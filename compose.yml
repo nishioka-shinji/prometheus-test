@@ -16,6 +16,12 @@ services:
       - '9115:9115'
     volumes:
       - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
 
 volumes:
   prometheus-data:
