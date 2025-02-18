@@ -1,0 +1,7 @@
+groups:
+  - name: grafana
+    rules:
+      - alert: GrafanaIsUnhealthy
+        expr: probe_http_status_code{instance="http://grafana:3000/healthz"} != 200
+        annotations:
+          summary: "Grafana is unhealthy"
