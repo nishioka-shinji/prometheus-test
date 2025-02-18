@@ -1,8 +1,13 @@
 route:
-  receiver: 'slack-notifications'
+  receiver: 'null'
+  routes:
+    - receiver: 'slack-notifications'
+      matchers:
+        - alertname = "GrafanaIsUnhealthy"
 receivers:
+- name: 'null'
 - name: 'slack-notifications'
   slack_configs:
     - send_resolved: true
-      api_url: 'https://hooks.slack.com/services/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'
+      api_url: 'https://hooks.slack.com/services/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'
       text: "<!channel>\n{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
