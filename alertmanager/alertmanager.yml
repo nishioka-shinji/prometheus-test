@@ -1,0 +1,8 @@
+route:
+  receiver: 'slack-notifications'
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+    - send_resolved: true
+      api_url: 'https://hooks.slack.com/services/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'
+      text: "<!channel>\n{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"

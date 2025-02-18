@@ -1,5 +1,6 @@
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s
 
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
@@ -27,6 +28,7 @@ scrape_configs:
       - targets:
         - http://web:4567/success
         - http://web:4567/failure
+        - http://grafana:3000/healthz
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -34,3 +36,12 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: blackbox_exporter:9115  # The blackbox exporter's real hostname:port.
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager:9093
+
+rule_files:
+  - rules.yml
