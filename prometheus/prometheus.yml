@@ -28,7 +28,12 @@ scrape_configs:
       - targets:
         - http://web:4567/success
         - http://web:4567/failure
+        labels:
+          service_type: 'external'
+      - targets:
         - http://grafana:3000/healthz
+        labels:
+          service_type: 'internal'
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
