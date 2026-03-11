@@ -1,46 +1,46 @@
 services:
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - '9090:9090'
-    volumes:
-      - ./prometheus/:/etc/prometheus/
-      - prometheus-data:/prometheus
-  node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
-    ports:
-      - '9100:9100'
-  blackbox_exporter:
-    image: prom/blackbox-exporter
-    ports:
-      - '9115:9115'
-    volumes:
-      - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
-  alertmanager:
-    image: prom/alertmanager:latest
-    ports:
-      - '9093:9093'
-    volumes:
-      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - '3000:3000'
-    volumes:
-      - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
-  web:
-    build: ./web
-    ports:
-      - "4567:4567"
-    volumes:
-      - ./web:/app
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/log:/var/log/nginx/
+  # prometheus:
+  #   image: prom/prometheus
+  #   ports:
+  #     - '9090:9090'
+  #   volumes:
+  #     - ./prometheus/:/etc/prometheus/
+  #     - prometheus-data:/prometheus
+  # node_exporter:
+  #   image: quay.io/prometheus/node-exporter:latest
+  #   ports:
+  #     - '9100:9100'
+  # blackbox_exporter:
+  #   image: prom/blackbox-exporter
+  #   ports:
+  #     - '9115:9115'
+  #   volumes:
+  #     - ./blackbox_exporter/config.yml:/etc/blackbox_exporter/config.yml
+  # alertmanager:
+  #   image: prom/alertmanager:latest
+  #   ports:
+  #     - '9093:9093'
+  #   volumes:
+  #     - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   ports:
+  #     - '3000:3000'
+  #   volumes:
+  #     - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+  # web:
+  #   build: ./web
+  #   ports:
+  #     - "4567:4567"
+  #   volumes:
+  #     - ./web:/app
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./nginx/log:/var/log/nginx/
   loki:
     image: grafana/loki:latest
     ports:
@@ -76,5 +76,5 @@ services:
   #     - -listen-address=:8080
   #     - -config.file=/tmp/config.yml
 
-volumes:
-  prometheus-data:
+# volumes:
+#   prometheus-data:
