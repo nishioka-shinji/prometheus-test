@@ -1,0 +1,35 @@
+// Docker コンテナの標準出力ログを収集
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+// コンテナ名をラベルに付与
+discovery.relabel "docker" {
+  targets = discovery.docker.containers.targets
+
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "service_name"
+  }
+}
+
+// Docker コンテナのログソース
+loki.source.docker "default" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.docker.output
+  forward_to = [loki.write.local.receiver]
+}
+
+// Loki への書き込み
+loki.write "local" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
