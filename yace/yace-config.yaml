@@ -1,0 +1,13 @@
+apiVersion: v1alpha1
+sts-region: us-east-1
+discovery:
+  jobs:
+    - type: AWS/Billing
+      regions:
+        - us-east-1
+      metrics:
+        - name: EstimatedCharges
+          statistics:
+            - Max
+          period: 3600
+          length: 87600

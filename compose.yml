@@ -55,5 +55,19 @@ services:
       - ./promtail/config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
 
+  # yace:
+  #   image: quay.io/prometheuscommunity/yet-another-cloudwatch-exporter:latest
+  #   environment:
+  #     AWS_REGION: ap-northeast-1
+  #     AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+  #     AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./yace/yace-config.yaml:/tmp/config.yml
+  #   command:
+  #     - -listen-address=:8080
+  #     - -config.file=/tmp/config.yml
+
 volumes:
   prometheus-data:
