@@ -22,12 +22,12 @@ services:
   #     - '9093:9093'
   #   volumes:
   #     - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
-  # grafana:
-  #   image: grafana/grafana:latest
-  #   ports:
-  #     - '3000:3000'
-  #   volumes:
-  #     - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3200:3000'
+    volumes:
+      - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
   # web:
   #   build: ./web
   #   ports:
